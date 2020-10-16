@@ -1,20 +1,20 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
-  $(".change-sleep").on("click", function(event) {
+  $(".change-eaten").on("click", function(event) {
     var id = $(this).data("id");
-    var newSleep = $(this).data("newsleep");
+    var newEaten = $(this).data("neweaten");
 
-    var newSleepState = {
-      sleepy: newSleep
+    var newDevouredState = {
+      sleepy: newEaten
     };
 
     // Send the PUT request.
-    $.ajax("/api/cats/" + id, {
+    $.ajax("/api/burger/" + id, {
       type: "PUT",
-      data: newSleepState
+      data: newDevouredState
     }).then(
       function() {
-        console.log("changed sleep to", newSleep);
+        console.log("changed eaten status to:", newEaten);
         // Reload the page to get the updated list
         location.reload();
       }
@@ -25,18 +25,18 @@ $(function() {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
-    var newCat = {
-      name: $("#ca").val().trim(),
-      sleepy: $("[name=sleepy]:checked").val().trim()
+    var newBurger = {
+      name: $("#burg").val().trim(),
+      sleepy: $("[name=devoured]:checked").val().trim()
     };
 
     // Send the POST request.
-    $.ajax("/api/cats", {
+    $.ajax("/api/burger", {
       type: "POST",
-      data: newCat
+      data: newBurger
     }).then(
       function() {
-        console.log("created new cat");
+        console.log("Added New Burger to Menu");
         // Reload the page to get the updated list
         location.reload();
       }
@@ -46,11 +46,11 @@ $(function() {
   $(".delete").on("click", function(event) {
     var id = $(this).data("id");
     // Send the PUT request.
-    $.ajax("/api/cats/" + id, {
+    $.ajax("/api/burger/" + id, {
       type: "DELETE",
     }).then(
       function() {
-        console.log("changed sleep to", newSleep);
+        console.log("changed eaten status to:", newEaten);
         // Reload the page to get the updated list
         location.reload();
       }
