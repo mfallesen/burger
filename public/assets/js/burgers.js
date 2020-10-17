@@ -3,9 +3,9 @@ $(function() {
   $(".change-eaten").on("click", function(event) {
     var id = $(this).data("id");
     var newEaten = $(this).data("neweaten");
-
+    console.log("-------" + newEaten);
     var newDevouredState = {
-      sleepy: newEaten
+      devoured: newEaten
     };
 
     // Send the PUT request.
@@ -27,7 +27,7 @@ $(function() {
 
     var newBurger = {
       name: $("#burg").val().trim(),
-      sleepy: $("[name=devoured]:checked").val().trim()
+      devoured: $("[name=devoured]:checked").val().trim()
     };
 
     // Send the POST request.
